@@ -39,11 +39,15 @@ Finally, after CTS, PDN and routing, using
 ```bash
 run_cts
 ```
+![cts](Images/cts.png)
 
 ```bash
 gen_pdn
 ```
 
+![gen_pdn](Images/pdn.png)
+
 ```bash
 run_routing
 ```
+![route](Images/route.png)
