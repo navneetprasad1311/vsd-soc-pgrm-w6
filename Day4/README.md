@@ -128,6 +128,7 @@ The command
 
 ```bash
 grid 0.46um 0.34um 0.23um 0.17um
+what
 ```
 
 defines the **layout grid parameters** in Magic, specifying grid spacing and offsets for accurate alignment of layout features.
@@ -144,5 +145,96 @@ lef write
 ```
 
 ![lef](Images/lef.png)
+
+---
+
+**Viewing the Generated LEF File**
+To open and inspect the LEF file, use the following commands:
+
+```bash
+cd vsdstdcelldesign
+less sky130_vsdinv.lef
+```
+
+**Opening the LEF File**
+This allows you to review the exported layout information such as cell boundaries, pins, and layer details.
+
+![lefin](Images/lefin.png)
+
+---
+
+**Copying the LEF File**
+Use the following command to move the generated LEF file into the design source directory:
+
+```bash
+cp sky130_vsdinv.lef ~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/src/
+```
+
+---
+
+**Configuration File Updates**
+
+The following configuration settings define the design environment, timing parameters, and library paths for synthesis and analysis:
+
+```tcl
+# Design Information
+set ::env(DESIGN_NAME) "picorv32a"
+
+# Source Files
+set ::env(VERILOG_FILES) "./designs/picorv32a/src/picorv32a.v"
+set ::env(SDC_FILE) "./designs/picorv32a/src/picorv32a.sdc"
+
+# Clock Configuration
+set ::env(CLOCK_PERIOD) "5.000"
+set ::env(CLOCK_PORT) "clk"
+set ::env(CLOCK_NET) $::env(CLOCK_PORT)
+
+# Library Paths
+set ::env(LIB_SYNTH) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+set ::env(LIB_FASTEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__fast.lib"
+set ::env(LIB_SLOWEST) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__slow.lib"
+set ::env(LIB_TYPICAL) "$::env(OPENLANE_ROOT)/designs/picorv32a/src/sky130_fd_sc_hd__typical.lib"
+
+# Additional LEF Files
+set ::env(EXTRA_LEFS) [glob $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/src/*.lef]
+
+# Conditional Configuration Load
+set filename $::env(OPENLANE_ROOT)/designs/$::env(DESIGN_NAME)/$::env(PDK)_$::env(STD_CELL_LIBRARY)_config.tcl
+if { [file exists $filename] == 1 } {
+    source $filename
+}
+```
+
+**Preparation Command**
+
+Execute the following commands to initialize the design environment and load the updated configuration:
+
+```bash
+package require openlane 0.9
+prep -design picorv32a -overwrite
+```
+
+💡 **Note:** The `-overwrite` flag ensures that the latest parameter values from the updated `config.tcl` file are applied.
+
+
+![oplane](Images/oplane.png)
+
+---
+
+Then, run synthesis, floorplan, and placement and routing.
+
+```bash
+run_synthesis
+init_floorplan
+place_io
+tap_decap_or
+run_placement
+```
+
+![synth](Images/synth.png)
+
+![floorplan](Images/floorplan.png)
+
+![placement](Images/placement.png)
 
 ---
