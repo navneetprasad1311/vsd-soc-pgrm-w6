@@ -178,7 +178,51 @@ ext2spice
 
 These commands extract all layout elements and convert them into a detailed SPICE netlist, including parasitic resistance and capacitance data for accurate analysis.
 
-![spice](Images/spice.png)
+![extract](Images/extract.png)
 
 ---
 
+### Editing SPICE for Transient Simulation
+
+Update the extracted SPICE netlist to define input sources, power connections, and transient analysis parameters for dynamic simulation.
+
+```bash
+* SPICE3 netlist for sky130_inv.ext - technology: sky130A
+
+.option scale=0.01u
+.include libs/pshort.lib
+.include libs/nshort.lib
+
+M1000 Y A VPWR VPWR pshort_model.0 w=37 l=23
+M1001 Y A VGND VGND nshort_model.0 w=35 l=23
+
+VDD VPWR 0 3.3V
+VSS VGND 0 0V
+Va A VGND PULSE(0 3.3 0 0.1ns 0.1ns 2ns 4ns)
+
+.tran 1n 20n
+.control
+run
+.endc
+.end
+```
+
+This configuration adds **power rails (VDD and VSS)**, defines a **pulsed input signal**, and specifies a **transient analysis** to observe circuit behavior over time.
+
+![spfile](Images/spfile.png)
+
+---
+
+### Running Simulation in NGSPICE
+
+Execute the transient analysis to observe the inverter’s switching response and output waveform.
+
+```bash
+ngspice sky130_inv.spice
+```
+
+This command launches **NGSPICE**, runs the defined transient simulation, and displays the **voltage waveforms** for input and output nodes, allowing verification of the inverter’s dynamic behavior.
+
+![spicett](Images/spicett.png)
+
+![spicesim](Images/spicesim.png)
