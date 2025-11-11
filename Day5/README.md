@@ -33,3 +33,17 @@ These outputs form the basis for signoff checks like LVS, DRC, and final timing 
 ---
 
 ## Labs
+
+Finally, after CTS, PDN and routing, using 
+
+```bash
+run_cts
+```
+
+```bash
+gen_pdn
+```
+
+```bash
+run_routing
+```
