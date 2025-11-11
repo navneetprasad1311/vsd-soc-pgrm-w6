@@ -111,3 +111,38 @@ Day 4 introduces the fundamentals of **timing analysis**, **delay modeling**, an
 ---
 
 ## Labs
+
+In the console window of `magic`, enter the following command to access information about the **grid** feature:
+
+```bash
+help grid
+```
+
+![helpgrid](Images/helpgrid.png)
+
+---
+
+Port Class and Use Configuration
+
+The command
+
+```bash
+grid 0.46um 0.34um 0.23um 0.17um
+```
+
+defines the **layout grid parameters** in Magic, specifying grid spacing and offsets for accurate alignment of layout features.
+
+![what](Images/what.png)
+
+---
+
+Then, in the `magic` console
+
+```bash
+save sky130_vsdinv.mag
+lef write
+```
+
+![lef](Images/lef.png)
+
+---
