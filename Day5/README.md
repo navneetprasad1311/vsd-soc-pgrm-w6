@@ -50,4 +50,17 @@ gen_pdn
 ```bash
 run_routing
 ```
+
 ![route](Images/route.png)
+![routing](Images/routing.png)
+
+---
+
+After the routing stage is completed, the complete physical layout of the chip is presented, ready for fabrication.
+
+The GDS file includes all standard cells, interconnections, power networks, and routing layers integrated together.
+
+📸 **Final GDS Layout Output**
+![GDS](Images/GDS.png)
+
+---
