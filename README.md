@@ -30,15 +30,15 @@ To perform hands-on Physical Design labs using a pre-configured VDI image and un
 
 ## Day-wise Folders:
 
-- [Day 1](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day1)
+- [Day 1: Inception of Open-Source EDA, OpenLANE, and Sky130 PDK](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day1)
 
-- [Day 2](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day2)
+- [Day 2: Good floorplan vs bad floorplan and introduction to library cells](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day2)
 
-- [Day 3](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day3)
+- [Day 3: Design library cell using Magic Layout and ngspice characterization](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day3)
 
-- [Day 4](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day4)
+- [Day 4: Pre-layout timing analysis and importance of good clock tree](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day4)
 
-- [Day 5](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day5)
+- [Day 5: Final steps for RTL2GDS using tritonRoute and openSTA](https://github.com/navneetprasad1311/vsd-soc-pgrm-w6/tree/main/Day5)
 
 ---
 
