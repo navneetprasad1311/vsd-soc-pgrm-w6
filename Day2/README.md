@@ -115,3 +115,55 @@
 ---
 
 ## Labs
+
+After completing synthesis, the **floorplanning** stage can be carried out using OpenLANE’s interactive shell. \
+Begin by launching the Docker container from the OpenLANE directory, then resume the flow from the synthesis stage completed on Day 1. \
+Use the following command to execute this step,
+
+```bash
+run_floorplan
+```
+
+![flpln](Images/flpln.png)
+
+---
+
+Then to view the cells using magic,
+
+Enter the directory `~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/11-11_16-17/results/floorplan`, and use the command,
+
+```bash
+magic -T ~/soc-design-and-planning-nasscom-vsd/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.floorplan.def &
+```
+
+![plcdcells](Images/plcdcells.png)
+
+![cells](Images/cells.png)
+
+![magiccells](Images/magiccells.png)
+
+
+OpenLANE automates the entire placement process, efficiently arranging standard cells to enhance timing performance and routing quality.
+The command used to execute this stage is,
+
+```bash
+run_placement
+```
+
+![placement](Images/placement.png)
+
+![plcpng](Images/plcpng.png)
+
+---
+
+Then, in the directory `~/Desktop/work/tools/openlane_working_dir/openlane/designs/picorv32a/runs/11-11_16-17/results/placement`, run
+
+```bash
+magic -T ~/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech lef read ../../tmp/merged.lef def read picorv32a.placement.def &
+```
+
+![magicplac](Images/magicplac.png)
+
+---
+
+

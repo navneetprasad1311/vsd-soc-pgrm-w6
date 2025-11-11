@@ -127,3 +127,58 @@ Day 3 bridges circuit-level understanding with layout and simulation. It introdu
 ---
 
 ## Labs
+
+### Repository Setup & Technology Configuration
+
+Before starting the design, set up the working environment and copy the necessary Sky130 technology files.
+
+```bash
+git clone https://github.com/nickson-jose/vsdstdcelldesign
+cd vsdstdcelldesign
+cp /home/vsduser/Desktop/work/tools/openlane_working_dir/pdks/sky130A/libs.tech/magic/sky130A.tech .
+ls -la
+```
+
+These commands clone the standard cell design repository, navigate into it, copy the **Sky130A technology file** required by Magic, and list the directory contents to confirm successful setup.
+
+### Load Layout in Magic
+
+Open the CMOS inverter layout in Magic to explore the device layers and geometries.
+
+```bash
+magic -T sky130A.tech sky130_inv.mag &
+```
+
+![magicstdcell](Images/magicstdcell.png)
+
+---
+
+### Running Design Rule Check (DRC)
+
+Magic provides built-in DRC features that verify the design against Sky130A technology constraints.
+
+```bash
+drc check
+drc why
+```
+
+![drcwhy](Images/drcwhy.png)
+
+---
+
+### SPICE Netlist Extraction
+
+After ensuring the layout is **DRC-clean**, the next step is to generate the **SPICE netlist** for circuit-level simulation and verification.
+
+```bash
+extract all
+ext2spice cthresh 0 rthresh 0
+ext2spice
+```
+
+These commands extract all layout elements and convert them into a detailed SPICE netlist, including parasitic resistance and capacitance data for accurate analysis.
+
+![spice](Images/spice.png)
+
+---
+
